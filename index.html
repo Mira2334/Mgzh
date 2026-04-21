@@ -1,0 +1,437 @@
+--- START OF FILE index.html ---
+
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тренажерbuk – Мағжан Жұмабаев поэзиясы</title>
+    <style>
+        :root {
+            --primary: #1b4d3e; 
+            --accent: #c5a059;  
+            --bg: #fdfaf1;      
+            --text: #2c3e50;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-image: url('https://www.transparenttextures.com/patterns/parchment.png');
+        }
+
+        .ornament-top {
+            width: 100%;
+            height: 40px;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Kazakh_ornament.svg/1280px-Kazakh_ornament.svg.png') repeat-x;
+            background-size: contain;
+            opacity: 0.15;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(rgba(27, 77, 62, 0.9), rgba(27, 77, 62, 0.9)), 
+                        url('https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=2070');
+            background-size: cover;
+            background-position: center;
+            color: var(--accent);
+            border-bottom: 5px solid var(--accent);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #123329;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            flex-wrap: wrap;
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            color: #fff;
+            padding: 15px 20px;
+            cursor: pointer;
+            font-size: 1.05rem;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav button:hover, nav button.active {
+            color: var(--accent);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+            min-height: 700px;
+        }
+
+        .tab-content { display: none; animation: fadeIn 0.5s ease; }
+        .active-content { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        h2 { color: var(--primary); border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 25px; text-align: center; }
+        h3 { color: var(--primary); background: #f4f7f6; padding: 10px; border-left: 4px solid var(--accent); margin-top: 25px; }
+
+        .theory-text { font-size: 1.15rem; text-align: justify; margin-bottom: 20px; }
+        .card { background: #fdfdfd; border: 1px solid #eee; padding: 20px; margin-bottom: 20px; border-radius: 5px; }
+        .poem-text { background: #f9f6f0; padding: 25px; font-style: italic; text-align: center; font-size: 1.25rem; border: 1px double var(--accent); margin-bottom: 25px; white-space: pre-line; }
+
+        .quiz-item { background: #fff; border: 1px solid #eee; padding: 20px; margin-bottom: 20px; }
+        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+        .option-btn { background: #f8f9fa; border: 1px solid #ddd; padding: 10px; cursor: pointer; display: flex; align-items: center; transition: 0.2s; }
+        .option-btn:hover { background: #eef2f0; }
+        input[type="radio"] { margin-right: 10px; }
+
+        select, input[type="text"], textarea { width: 100%; padding: 10px; border: 1px solid #ccc; margin-top: 8px; font-size: 1rem; border-radius: 4px; }
+
+        .btn-check { background: var(--primary); color: #fff; padding: 12px 30px; border: none; cursor: pointer; display: block; margin: 20px auto; font-weight: bold; transition: 0.3s; }
+        .btn-check:hover { background: var(--accent); }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        th { background: var(--primary); color: white; }
+    </style>
+</head>
+<body>
+
+<div class="ornament-top"></div>
+
+<header>
+    <h1>Тренажерbuk</h1>
+    <p>Мағжан Жұмабаев поэзиясының цифрлық моделі</p>
+</header>
+
+<nav>
+    <button onclick="openTab(event, 'theory')" class="active">Теория</button>
+    <button onclick="openTab(event, 'analysis')">Өлеңді талдау</button>
+    <button onclick="openTab(event, 'test')">Тест</button>
+    <button onclick="openTab(event, 'match')">Сәйкестендіру</button>
+    <button onclick="openTab(event, 'blanks')">Бос орын</button>
+    <button onclick="openTab(event, 'essay')">Эссе</button>
+    <button onclick="openTab(event, 'advanced')">Жоғары деңгей</button>
+    <button onclick="openTab(event, 'final')" style="color: var(--accent);">Қорытынды</button>
+</nav>
+
+<div class="container">
+
+    <!-- 1. ТЕОРИЯЛЫҚ БЛОК -->
+    <section id="theory" class="tab-content active-content">
+        <h2>Мағжан Жұмабаев: ұлы тұлғаның өмір жолы мен мұрасы</h2>
+        <div class="theory-text">
+            <h3>1. Тектік негізі және балалық шағы</h3>
+            <p>Мағжан Бекенұлы Жұмабаев 1893 жылы 25 маусымда қазіргі Солтүстік Қазақстан облысы, Мағжан Жұмабаев ауданындағы Сасықкөл маңында дүниеге келген. Әкесі Бекен – Орта жүздің Арғын тайпасынан шыққан, өз заманының білімді, дәулетті және ел билігіне араласқан беделді адамы болған. Мағжанның анасы Гүлсім де текті жердің қызы болған. Осындай зиялы ортада өскен Мағжан жастайынан зеректігімен көзге түсті.</p>
+
+            <h3>2. Білім шыңына саяхат: Шығыстан Батысқа</h3>
+            <p>Ауыл молдасынан хат танығаннан кейін, 1905-1910 жылдары Қызылжар (Петропавл) қаласындағы Бегішев медресесінде білім алды. Мұнда ол араб, парсы және түрік тілдерін меңгеріп, Шығыс поэзиясының алтын қорымен танысты. 1910 жылы Уфадағы әйгілі «Ғалия» медресесіне түсіп, татар зиялысы Ғалымжан Ибрагимовтың қолдауымен 1912 жылы «Шолпан» атты тұңғыш өлеңдер жинағын бастырып шығарды.</p>
+
+            <h3>3. Омбы кезеңі және Алаш қозғалысы</h3>
+            <p>1913-1916 жылдары Омбы мұғалімдер семинариясында оқып, орыс классикалық әдебиетімен терең танысты. Осы жылдары «Бірлік» ұйымына мүше болып, ұлт-азаттық қозғалыстың идеяларын насихаттады. 1917 жылы Алаш партиясының құрылтайына қатысып, Алашорда үкіметінің Солтүстік Қазақстандағы бөлімдерін ұйымдастыруға атсалысты.</p>
+
+            <h3>4. Символизм бағыты: Жаңашыл ақын</h3>
+            <p>Мағжан – қазақ поэзиясына еуропалық және орыстық символизм бағытын әкелген жаңашыл. Оның өлеңдеріне нәзік психологизм, метафоралық тереңдік және дыбыстық үндестік (аллитерация) тән. Ол адам жанының ішкі тебіреністерін табиғат құбылыстарымен үндестіре суреттеді. Оны Мұхтар Әуезов «Мәдениеті зор ақын, қазақтың екінші Абайы» деп бағалаған.</p>
+
+            <h3>5. «Педагогика» — ұлттық тәрбие негізі</h3>
+            <p>1922 жылы Ташкентте ақынның әйгілі «Педагогика» оқулығы жарық көрді. Онда ол баланы тәрбиелеудің төрт саласын: дене, ақыл, сұлулық және құлық тәрбиесін ғылыми тұрғыдан жүйеледі. «Бала тәрбиесі – бір өнер, өнер болғанда ауыр өнер» — деген қағидасы бүгінге дейін маңызын жойған жоқ.</p>
+
+            <h3>6. Түркі әлемінің тұтастығы</h3>
+            <p>Мағжан шығармашылығындағы шоқтығы биік туындылардың бірі – «Түркістан» өлеңі. Ол бүкіл түркі дүниесінің басын қосуды, ортақ тарих пен мәдениетті ұлықтауды мақсат етті. Түрік халқы ақынды «Түрік әлемінің рухани көсемі» ретінде құрметтейді.</p>
+
+            <h3>7. Қуғын-сүргін және Трагедия</h3>
+            <p>Кеңестік жүйе Мағжанның еркін ойынан, ұлтшылдық рухынан қорықты. 1929 жылы алғаш рет тұтқындалып, Карелиядағы лагерьлерде он жылға жуық уақытын өткізді. М. Горькийдің көмегімен бір рет босап шықса да, 1937 жылы қайта ұсталып, 1938 жылы 19 наурызда Алматыда атылды.</p>
+
+            <h3>8. Ақталу және Рухани мәңгілік</h3>
+            <p>Ақынның есімі мен еңбектері ұзақ уақыт тыйым салынғаннан кейін, тек 1988 жылы ғана толық ақталды. Бүгінде Мағжан Жұмабаев — қазақ рухының бостандығы мен асқақтығының символы, әлемдік деңгейдегі классик ақын.</p>
+        </div>
+    </section>
+
+    <!-- 2. ӨЛЕҢДІ ТАЛДАУ -->
+    <section id="analysis" class="tab-content">
+        <h2>«Туған жер» өлеңіне талдау (10 балл)</h2>
+        <div class="poem-text">
+            Жаратылдым топырағыңнан, сенен бастау алғанмын,
+            Кіндігімді кескен жерім, сенде еркін аунағанмын.
+            Адам басы – Алла добы, айдауменен барамын,
+            Бірақ сені, туған өлкем, мәңгі есімде сақтағанмын.
+        </div>
+        <div class="card">
+            <p><b>1. Өлеңнің негізгі тақырыбы:</b> (2 балл)</p>
+            <select id="an-1"><option value="">Таңдаңыз...</option><option value="2">Туған жерге деген перзенттік махаббат</option><option value="1">Табиғат сұлулығы</option></select>
+            <p><b>2. Балалық шақты сипаттайтын сөзді жаз:</b> (2 балл)</p>
+            <input type="text" id="an-2" placeholder="аунағанмын / кіндігімді кескен жерім">
+            <p><b>3. «Жаратылдым топырағыңнан...» мағынасы:</b> (3 балл)</p>
+            <select id="an-3"><option value="">Таңдаңыз...</option><option value="3">Адам мен Отанның бөлінбес бірлігі</option><option value="1">Егіншілік туралы</option></select>
+            <p><b>4. «Адам басы – Алла добы» көркемдік тәсілі:</b> (3 балл)</p>
+            <select id="an-4"><option value="">Таңдаңыз...</option><option value="3">Метафора</option><option value="1">Теңеу</option></select>
+        </div>
+        <button class="btn-check" onclick="checkAnalysis()">Нәтижені сақтау</button>
+    </section>
+
+    <!-- 3. ТЕСТ -->
+    <section id="test" class="tab-content">
+        <h2>Интерактивті тест (10 балл)</h2>
+        <div id="quiz-area"></div>
+        <button class="btn-check" onclick="checkQuiz()">Тестті аяқтау</button>
+    </section>
+
+    <!-- 4. СӘЙКЕСТЕНДІРУ -->
+    <section id="match" class="tab-content">
+        <h2>Сәйкестендіру тапсырмасы (10 балл)</h2>
+        <div class="card">
+            <div style="margin-bottom:15px;">
+                <p>1. <b>Эпитет:</b></p>
+                <select id="m1">
+                    <option value="0">Таңдаңыз...</option>
+                    <option value="1">асау тай</option>
+                    <option value="0">Алла добы</option>
+                </select>
+            </div>
+            <div style="margin-bottom:15px;">
+                <p>2. <b>Метафора:</b></p>
+                <select id="m2">
+                    <option value="0">Таңдаңыз...</option>
+                    <option value="0">сорлы бас</option>
+                    <option value="1">Адам басы – Алла добы</option>
+                </select>
+            </div>
+            <div style="margin-bottom:15px;">
+                <p>3. <b>Теңеу:</b></p>
+                <select id="m3">
+                    <option value="0">Таңдаңыз...</option>
+                    <option value="1">сорлы бас</option>
+                    <option value="0">тағдыр қуу</option>
+                </select>
+            </div>
+            <div style="margin-bottom:15px;">
+                <p>4. <b>Кейіптеу:</b></p>
+                <select id="m4">
+                    <option value="0">Таңдаңыз...</option>
+                    <option value="1">тағдыр қуу</option>
+                    <option value="0">асау тай</option>
+                </select>
+            </div>
+            <hr>
+            <p>5. <b>Өз мысалыңды жаз (5 балл):</b></p>
+            <textarea id="m5" placeholder="Мысалы: Алтын күн, мұз жүрек..."></textarea>
+        </div>
+        <button class="btn-check" onclick="checkMatch()">Сақтау</button>
+    </section>
+
+    <!-- 5. БОС ОРЫН -->
+    <section id="blanks" class="tab-content">
+        <h2>Мәтінді толықтыру (10 балл)</h2>
+        <div class="card">
+            <p>Мағжан Жұмабаев — <input type="text" id="b1" style="width:150px;"> ақын.</p>
+            <p>Өлең тақырыбы — <input type="text" id="b2" style="width:150px;">.</p>
+            <p>«Адам басы – Алла добы» — бұл <input type="text" id="b3" style="width:150px;">.</p>
+            <p>«Туған жер» өлеңі <input type="text" id="b4" style="width:50px;"> буынды.</p>
+            <p>Өлең ұйқасы — <input type="text" id="b5" style="width:100px;">.</p>
+        </div>
+        <button class="btn-check" onclick="checkBlanks()">Сақтау</button>
+    </section>
+
+    <!-- 6. ЭССЕ -->
+    <section id="essay" class="tab-content">
+        <h2>✍️ Эссе жазу бөлімі (10 балл)</h2>
+        <div class="card" style="background:#fff9e6; border: 1px dashed #d4a017;">
+            <p>Тақырып: <b>«Мағжан Жұмабаев поэзиясындағы туған жер образы»</b></p>
+            <p><small>Көлемі: 140-160 сөз. Көшіруге (Ctrl+V) тыйым салынады!</small></p>
+        </div>
+        <textarea id="essay-text" rows="12" oninput="updateWordCount()" onpaste="return false;" placeholder="Эссеңізді осында бастаңыз..."></textarea>
+        <p>Сөз саны: <span id="word-count">0</span></p>
+        <button class="btn-check" onclick="checkEssay()">Жіберу</button>
+    </section>
+
+    <!-- 7. ЖОҒАРЫ ДЕҢГЕЙ -->
+    <section id="advanced" class="tab-content">
+        <h2>Жоғары деңгей тапсырмалары (10 балл)</h2>
+        <div class="card">
+            <p>1. <b>Сатылай талдау (5 балл):</b> (Өлеңнің өлшемі мен жанрын талдаңыз)</p>
+            <textarea id="adv1" placeholder="Мысалы: Лирикалық жанр, 11 буын, а-а-б-а ұйқасы..."></textarea>
+            
+            <p>2. <b>Анализ (3 балл):</b> (Ақын неге туған жерді «топырақпен» байланыстырады?)</p>
+            <textarea id="adv2" placeholder="Ойыңызды дәлелдеңіз..."></textarea>
+
+            <p>3. <b>Синтез (2 балл):</b> (Мағжан стилінде 2 жол өлең шығарыңыз)</p>
+            <input type="text" id="adv3" placeholder="Өз шығармаңыз...">
+        </div>
+        <button class="btn-check" onclick="checkAdvanced()">Баллды есептеу</button>
+    </section>
+
+    <!-- 8. ҚОРЫТЫНДЫ -->
+    <section id="final" class="tab-content">
+        <h2>Қорытынды бағалау</h2>
+        <table>
+            <tr><th>Бөлім</th><th>Макс. балл</th><th>Жиналған балл</th></tr>
+            <tr><td>Өлеңді талдау</td><td>10</td><td id="res1">0</td></tr>
+            <tr><td>Тест нәтижесі</td><td>10</td><td id="res2">0</td></tr>
+            <tr><td>Сәйкестендіру</td><td>10</td><td id="res3">0</td></tr>
+            <tr><td>Бос орынды толтыру</td><td>10</td><td id="res4">0</td></tr>
+            <tr><td>Эссе жұмысы</td><td>10</td><td id="res5">0</td></tr>
+            <tr><td>Жоғары деңгей</td><td>10</td><td id="res6">0</td></tr>
+            <tr style="font-weight:bold; background:#eee;"><td>ЖАЛПЫ БАЛЛ</td><td>60</td><td id="res-total">0</td></tr>
+        </table>
+        <div id="final-message" style="margin-top:20px; text-align:center; font-weight:bold; font-size:1.2rem;"></div>
+    </section>
+
+</div>
+
+<script>
+    let totalScores = { analysis: 0, test: 0, match: 0, blanks: 0, essay: 0, advanced: 0 };
+
+    function openTab(evt, tabName) {
+        let i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) tabcontent[i].style.display = "none";
+        tablinks = document.querySelectorAll("nav button");
+        for (i = 0; i < tablinks.length; i++) tablinks[i].classList.remove("active");
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.classList.add("active");
+        calculateTotal();
+    }
+
+    const questions = [
+        { q: "Мағжан Жұмабаев қай жылы туған?", a: ["1893", "1888", "1900", "1845"], c: 0 },
+        { q: "«Педагогика» оқулығы қай жылы шықты?", a: ["1912", "1922", "1930", "1917"], c: 1 },
+        { q: "Мағжанды «Екінші Абай» деген кім?", a: ["А.Байтұрсынов", "М.Әуезов", "С.Сейфуллин", "Ж.Аймауытов"], c: 1 },
+        { q: "Ақынның алғашқы жинағы қалай аталады?", a: ["Оян, қазақ", "Шолпан", "Ақбілек", "Меруерт"], c: 1 },
+        { q: "Қай медреседе білім алды?", a: ["Ғалия", "Ахмет Риза", "Қарқаралы", "Орынбор"], c: 0 },
+        { q: "«Мен жастарға сенемін» өлеңінің негізгі идеясы?", a: ["Мұң", "Сенім", "Табиғат", "Қайғы"], c: 1 },
+        { q: "Мағжан поэзиясындағы басты бағыт?", a: ["Реализм", "Символизм", "Футуризм", "Классицизм"], c: 1 },
+        { q: "Ақын қай жылы ақталды?", a: ["1956", "1988", "1991", "1960"], c: 1 },
+        { q: "«Түркістан» өлеңінің тақырыбы?", a: ["Түркі бірлігі", "Көктем", "Оқу", "Жаз"], c: 0 },
+        { q: "Мағжан қай жерде атылды?", a: ["Мәскеу", "Омбы", "Алматы", "Ташкент"], c: 2 }
+    ];
+
+    function renderQuiz() {
+        const area = document.getElementById('quiz-area');
+        questions.forEach((q, idx) => {
+            let html = `<div class="quiz-item"><p><b>${idx+1}. ${q.q}</b></p><div class="options-grid">`;
+            q.a.forEach((opt, oIdx) => {
+                html += `<label class="option-btn"><input type="radio" name="q${idx}" value="${oIdx}"> ${opt}</label>`;
+            });
+            html += `</div></div>`;
+            area.innerHTML += html;
+        });
+    }
+    renderQuiz();
+
+    function checkAnalysis() {
+        let s = 0;
+        if(document.getElementById('an-1').value == "2") s += 2;
+        if(document.getElementById('an-2').value.length > 5) s += 2;
+        if(document.getElementById('an-3').value == "3") s += 3;
+        if(document.getElementById('an-4').value == "3") s += 3;
+        totalScores.analysis = s;
+        alert("Талдау баллдары сақталды!");
+    }
+
+    function checkQuiz() {
+        let s = 0;
+        questions.forEach((q, idx) => {
+            const sel = document.querySelector(`input[name="q${idx}"]:checked`);
+            if(sel && sel.value == q.c) s++;
+        });
+        totalScores.test = s;
+        alert("Тест баллдары сақталды!");
+    }
+
+    function checkMatch() {
+        let s = 0;
+        if(document.getElementById('m1').value == "1") s += 1.25;
+        if(document.getElementById('m2').value == "1") s += 1.25;
+        if(document.getElementById('m3').value == "1") s += 1.25;
+        if(document.getElementById('m4').value == "1") s += 1.25;
+        if(document.getElementById('m5').value.length > 5) s += 5;
+        totalScores.match = Math.round(s);
+        alert("Сәйкестендіру сақталды!");
+    }
+
+    function checkBlanks() {
+        let s = 0;
+        if(document.getElementById('b1').value.length > 3) s += 2;
+        if(document.getElementById('b2').value.length > 3) s += 2;
+        if(document.getElementById('b3').value.toLowerCase().includes("метафора")) s += 2;
+        if(document.getElementById('b4').value == "11") s += 2;
+        if(document.getElementById('b5').value.length > 3) s += 2;
+        totalScores.blanks = s;
+        alert("Бос орын баллдары сақталды!");
+    }
+
+    function checkEssay() {
+        let text = document.getElementById('essay-text').value.trim();
+        let words = text === "" ? 0 : text.split(/\s+/).length;
+        let s = 0;
+        if(words >= 140 && words <= 160) s += 2;
+        if(text.toLowerCase().includes("туған жер")) s += 2;
+        if(text.includes("топырақ") || text.includes("Алла добы")) s += 3;
+        if(words > 100) s += 3;
+        totalScores.essay = s;
+        alert("Эссе нәтижесі сақталды!");
+    }
+
+    function checkAdvanced() {
+        let s = 0;
+        const adv1 = document.getElementById('adv1').value.trim();
+        const adv2 = document.getElementById('adv2').value.trim();
+        const adv3 = document.getElementById('adv3').value.trim();
+        
+        if(adv1.length > 30 && (adv1.includes("жанр") || adv1.includes("буын"))) s += 5;
+        if(adv2.length > 30) s += 3;
+        if(adv3.length > 10) s += 2;
+        
+        totalScores.advanced = s;
+        alert("Жоғары деңгей баллдары: " + s);
+    }
+
+    function updateWordCount() {
+        const text = document.getElementById('essay-text').value.trim();
+        document.getElementById('word-count').innerText = text ? text.split(/\s+/).length : 0;
+    }
+
+    function calculateTotal() {
+        document.getElementById('res1').innerText = totalScores.analysis;
+        document.getElementById('res2').innerText = totalScores.test;
+        document.getElementById('res3').innerText = totalScores.match;
+        document.getElementById('res4').innerText = totalScores.blanks;
+        document.getElementById('res5').innerText = totalScores.essay;
+        document.getElementById('res6').innerText = totalScores.advanced;
+        const total = Object.values(totalScores).reduce((a, b) => a + b, 0);
+        document.getElementById('res-total').innerText = total;
+        
+        let msg = "";
+        if (total >= 50) msg = "Керемет! Сіз Мағжан мұрасын үздік меңгердіңіз.";
+        else if (total >= 30) msg = "Жақсы нәтиже. Біліміңізді толықтыра түсіңіз.";
+        else msg = "Теорияны қайта оқып көріңіз.";
+        document.getElementById('final-message').innerText = msg;
+    }
+</script>
+
+</body>
+</html>
+
+--- END OF FILE index.html ---
